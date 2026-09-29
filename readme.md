@@ -46,18 +46,4 @@ Giải thuật theo phương pháp đệ quy thông qua hàm:
 | **1** | Trường hợp cơ sở $n = 1$ | `1 A C B` | `A -> C` | Chỉ có 1 đĩa, chuyển thẳng từ cọc nguồn `A` sang cọc đích `C`.|
 | **2** | Trường hợp nhỏ $n = 2$ | `2 A C B` | `A -> B`<br>`A -> C`<br>`B -> C` | 1. Chuyển đĩa 1 sang `B`.<br>2. Chuyển đĩa 2 sang `C`.<br>3. Chuyển đĩa 1 từ `B` sang `C`.|
 | **3** | Trường hợp tiêu chuẩn $n = 3$ | `3 A C B` | `A -> C`<br>`A -> B`<br>`C -> B`<br>`A -> C`<br>`B -> A`<br>`B -> C`<br>`A -> C`|
-| **4** | Trường hợp lớn hơn $n = 4$ | `4 A C B` | `A -> B`<br>
-`A -> C`<br>
-`B -> C`<br>
-`A -> B`<br>
-`C -> A`<br>
-`C -> B`<br>
-`A -> B`<br>
-`A -> C`<br>
-`B -> C`<br>
-`B -> A`<br>
-`C -> A`<br>
-`B -> C`<br>
-`A -> B`<br>
-`A -> C`<br>
-`B -> C` |
+| **4** | Trường hợp lớn hơn $n = 4$ | `4 A C B` | `A -> B`<br>`A -> C`<br>`B -> C`<br>`A -> B`<br>`C -> A`<br>`C -> B`<br>`A -> B`<br>`A -> C`<br>`B -> C`<br>`B -> A`<br>`C -> A`<br>`B -> C`<br>`A -> B`<br>`A -> C`<br>`B -> C` |
