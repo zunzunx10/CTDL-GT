@@ -41,8 +41,23 @@ Giải thuật theo phương pháp đệ quy thông qua hàm:
   * Gọi đệ quy: `xep(n - 1, temp, nguon, dich);` (Lúc này, với $n-1$ đĩa này đang ở cọc trung gian `temp` nên cọc `temp` này sẽ là cọc nguồn và cọc mà $n-1$ đĩa sắp chuyển tới là cọc `dich`. Còn lại cọc `nguon` sẽ được coi là cọc trung gian).
 ## 4. Bộ Test Cases kiểm thử
 
-| STT | Loại Test Case | Input | Output mong muốn | Giải thích |
+| STT | Test Case | Input | Output | Giải thích |
 | :--- | :--- | :--- | :--- | :--- |
-| **1** | Trường hợp cơ sở ($n = 1$) | `1 A C B` | `A -> C` | Chỉ có 1 đĩa, chuyển thẳng từ cọc nguồn `A` sang cọc đích `C`.|
-| **2** | Trường hợp nhỏ ($n = 2$) | `2 A C B` | `A -> B`<br>`A -> C`<br>`B -> C` | 1. Chuyển đĩa 1 sang `B`.<br>2. Chuyển đĩa 2 sang `C`.<br>3. Chuyển đĩa 1 từ `B` sang `C`.|
-| **3** | Trường hợp tiêu chuẩn ($n = 3$) | `3 A C B` | `A -> C`<br>`A -> B`<br>`C -> B`<br>`A -> C`<br>`B -> A`<br>`B -> C`<br>`A -> C`|
+| **1** | Trường hợp cơ sở $n = 1$ | `1 A C B` | `A -> C` | Chỉ có 1 đĩa, chuyển thẳng từ cọc nguồn `A` sang cọc đích `C`.|
+| **2** | Trường hợp nhỏ $n = 2$ | `2 A C B` | `A -> B`<br>`A -> C`<br>`B -> C` | 1. Chuyển đĩa 1 sang `B`.<br>2. Chuyển đĩa 2 sang `C`.<br>3. Chuyển đĩa 1 từ `B` sang `C`.|
+| **3** | Trường hợp tiêu chuẩn $n = 3$ | `3 A C B` | `A -> C`<br>`A -> B`<br>`C -> B`<br>`A -> C`<br>`B -> A`<br>`B -> C`<br>`A -> C`|
+| **4** | Trường hợp lớn hơn $n = 4$ | `4 A C B` | `A -> B`<br>
+`A -> C`<br>
+`B -> C`<br>
+`A -> B`<br>
+`C -> A`<br>
+`C -> B`<br>
+`A -> B`<br>
+`A -> C`<br>
+`B -> C`<br>
+`B -> A`<br>
+`C -> A`<br>
+`B -> C`<br>
+`A -> B`<br>
+`A -> C`<br>
+`B -> C` |
