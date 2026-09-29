@@ -1,7 +1,7 @@
 # Bài Toán Tháp Hà Nội
 
 ## 1. Mô tả bài toán
-Cho ba cọc: cọc nguồn (`nguon`), cọc trung gian (`temp`) và cọc đích (`dich`), cùng với $n$ đĩa có kích thước khác nhau xếp chồng lên cọc nguồn theo thứ tự đĩa nhỏ nằm trên đĩa to nằm dưới. 
+Cho ba cọc: cọc nguồn `nguon`, cọc trung gian `temp` và cọc đích `dich`, cùng với $n$ đĩa có kích thước khác nhau xếp chồng lên cọc nguồn theo thứ tự đĩa nhỏ nằm trên đĩa to nằm dưới. 
 
 **Mục tiêu:** Di chuyển toàn bộ $n$ đĩa từ cọc nguồn sang cọc đích với cáctheo quy tắc sau:
 - Mỗi lần chỉ được di chuyển đúng 1 đĩa trên cùng từ cọc này sang cọc khác.
