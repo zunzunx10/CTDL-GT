@@ -13,7 +13,7 @@ Cho ba cọc: cọc nguồn `nguon`, cọc trung gian `temp` và cọc đích `d
 
 * **Input:**
   * Dòng 1: Số nguyên dương $n$ — số lượng đĩa cần chuyển.
-  * Dòng 2: Ba ký tự `char` cách nhau bởi dấu cách theo thứ tự là tên của 3 chiếc cọc nguồn, đíhc và trung gian.
+  * Dòng 2: Ba ký tự `char` cách nhau bởi dấu cách theo thứ tự là tên của 3 chiếc cọc nguồn, đích và trung gian.
 * **Output:**
   * In ra màn hình từng bước di chuyển đĩa: `<Tên cọc nguồn> -> <Tên cọc đích>` trên từng dòng.
 
