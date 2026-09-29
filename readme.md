@@ -31,7 +31,7 @@ Giải thuật theo phương pháp đệ quy thông qua hàm:
 
 * **Bước 2 (Chuyển $n - 1$ đĩa trên sang cọc trung gian):**
   * Chuyển toàn bộ $n - 1$ đĩa nằm phía trên cùng của cọc nguồn `nguon` sang cọc trung gian `temp`.
-  * Gọi đệ quy: `xep(n - 1, nguon, dich, temp);` (với $n-1$ đĩa này thì cọc `temp` sẽ trở thành cọc đích mà đĩ sắpa được chuyển đến còn cọc `dich` sẽ trở thành cọc trung gian).
+  * Gọi đệ quy: `xep(n - 1, nguon, dich, temp);` (với $n-1$ đĩa này thì cọc `temp` sẽ trở thành cọc đích mà đĩa sắp được chuyển đến còn cọc `dich` sẽ trở thành cọc trung gian).
 
 * **Bước 3 (Chuyển đĩa lớn nhất sang cọc đích):**
   * Di chuyển đĩa lớn nhất còn lại ở cọc `nguon` sang cọc `dich` và in ra `<Tên cọc nguồn> -> <Tên cọc đích>`.
