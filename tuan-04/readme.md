@@ -21,10 +21,11 @@ Cho ba cọc: cọc nguồn `nguon`, cọc trung gian `temp` và cọc đích `d
 
 ## 3. Diễn giải các bước thực hiện giải thuật
 
-Giải thuật theo phương pháp đệ quy thông qua hàm:
+### Giải thuật theo phương pháp đệ quy 
+Hàm đệ quy nhận đầu vào lần lượt là số đĩa chuyển `n`, cọc nguồn `nguon`, cọc trung gian `temp`, và cọc đích `dich`: <br>
 `void xep(int n, char nguon, char temp, char dich)`
 
-### Các bước thực hiện giải thuật
+#### Các bước thực hiện giải thuật
 * **Bước 1 (Điều kiện dừng):**
   * Nếu $n = 1$: Chỉ có duy nhất 1 đĩa, ta chuyển trực tiếp đĩa đó từ cọc `nguon` sang cọc `dich` và in ra `<Tên cọc nguồn> -> <Tên cọc đích>`.
   * Sau đó kết thúc hàm bằng lệnh `return`.
@@ -39,6 +40,36 @@ Giải thuật theo phương pháp đệ quy thông qua hàm:
 * **Bước 4 (Chuyển $n - 1$ đĩa từ cọc trung gian sang cọc đích):**
   * Chuyển $n - 1$ đĩa đang tạm ở cọc trung gian `temp` về lại cọc `dich`.
   * Gọi đệ quy: `xep(n - 1, temp, nguon, dich);` (Lúc này, với $n-1$ đĩa này đang ở cọc trung gian `temp` nên cọc `temp` này sẽ là cọc nguồn và cọc mà $n-1$ đĩa sắp chuyển tới là cọc `dich`. Còn lại cọc `nguon` sẽ được coi là cọc trung gian).
+
+### Giải thuật theo phương pháp khử đệ quy
+Ta sẽ viết chương trình mô phỏng lại cơ chế call stack giống như gọi đệ quy bằng cấu trúc dữ liệu `stack`. Ta khởi tạo `Stack`. Mỗi phần tử trong `Stack` giống như 1 `stack frame` chứa các dữ liệu : 
+```cpp
+struct Frame {
+    int n; // Số lượng đĩa của bài toán con hiện tại
+    char nguon, dich, temp; // Tên cọc nguồn, cọc đích, cọc trung gian
+    int state; // Trạng thái thực thi hiện tại (0, 1, 2)
+};
+```
+member `state` có ý nghĩa là đánh dấu các lệnh đã thực thi trước khi push 1 frame khác vào stack để đảm bảo khi quay lại frame này, không thực hiện lại các nhiệm vụ trước.
+
+| Giá trị | Ý nghĩa| Hành động tiếp theo |
+| :---: | :--- | :--- |
+| `0` | frame vừa được tạo | Đánh dấu `state = 1`, thêm 1 frame thực hiện nhiệm vụ chuyển $n - 1$ đĩa trên cùng từ cọc `nguon` $\rightarrow$ cọc `temp` vào `stack`|
+| `1` | Đánh dấu đã thực hiện xong nhiệm vụ ở `state = 0` | Di chuyển đĩa thứ $n$ sang cọc `dich`. Đánh dấu `state = 2`, thêm 1 frame thực hiện chuyển $n - 1$ đĩa đang ở cọc `temp` $\rightarrow$  cọc `nguon` vào `stack` |
+| `2` | Đánh dấu đã thực hiện xong nhiệm vụ ở `state = 1` | xóa frame này `frame.pop()`|
+
+Giả sử chuyển 2 đĩa từ A sang C (mượn B):
+| Số vòng lặp | Phần tử top của stack (`top_frame`) | Hành động thực hiện | Trạng thái stack sau khi thực thi hành động (Đáy $\rightarrow$ Đỉnh) | Kết quả in ra |
+| :---: | :--- | :--- | :--- | :--- |
+| **0** | *(Khởi tạo)* | Push cấu hình gốc ($n = 2$) | `[(2, A, C, B, state = 0)]` | *(Chưa có)* |
+| **1** | `(2, A, C, B, state = 0)` | Kiểm tra thấy `state = 0`. Đi gán `state = 1`, Push cấu hình chuyển $n-1$ đĩa trên cùng sang cọc trung gian (lúc này $n = 1$) | `[(2, A, C, B, state = 1), (1, A, B, C, state = 0)]` | *(Chưa có)* |
+| **2** | `(1, A, B, C, state = 0)` | Kiểm tra thấy $n = 1$ tức cọc có 1 đĩa, in ra cách chuyển đĩa này sang cọc đích. Sau đó xóa frame này| `[(2, A, C, B, s=1)]` | `A -> B` |
+| **3** | `(2, A, C, B, state = 1)` |Kiểm tra thấy `state = 1`. In ra cách chuyển đĩa thứ $n$ sang cọc đích. Gán `state = 2`. Push cấu hình chuyển $n - 1$ đĩa từ cọc trung gian sang cọc đích| `[(2, A, C, B, s=2), (1, B, C, A, state = 0)]` | `A -> C` |
+| **4** | `(1, B, C, A, state = 0)` | Kiểm tra thấy $n = 1$ tức cọc có 1 đĩa, in ra cách chuyển đĩa này sang cọc đích. Sau đó xóa frame này | `[(2, A, C, B, state = 2)]` | `B -> C` |
+| **5** | `(2, A, C, B, s=2)` | Thấy `state = 2`, tức frame đã chuyển xong $n$ đĩa về cọc đích. Xóa frame này | `[]` *(Ngăn xếp rỗng)* | *(Chưa có)* |
+
+---
+
 ## 4. Bộ Test Cases kiểm thử
 
 | STT | Test Case | Input | Output | Giải thích |
