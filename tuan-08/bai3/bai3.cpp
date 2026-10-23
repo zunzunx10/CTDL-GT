@@ -6,7 +6,7 @@ int n, *A;
 
 void find_largest_subarray()
 {
-    int largest_subarray = 0, ending_subarray = 0, starting_subarray = 0;
+    int largest_subarray = 0, *ending_subarray = new int[n], cnt = 0;
 
     for (int i = 0; i < n; i++)
     {
@@ -16,19 +16,26 @@ void find_largest_subarray()
         {
             if (A[j] == 0) ++zeros;
             else ++ones;
-            if (zeros == ones && largest_subarray < zeros + ones)
+            if (zeros == ones)
             {
-                largest_subarray = zeros + ones;
-                ending_subarray = j;
-                starting_subarray = i;
+                if (largest_subarray < zeros + ones)
+                {
+                    largest_subarray = zeros + ones;
+                    cnt = 0; 
+                    ending_subarray[cnt++] = j;
+                }
+                else if (largest_subarray == zeros + ones) ending_subarray[cnt++] = j;
             }
         }
     }
     if (largest_subarray == 0) cout << -1;
     else 
     {
-        for (int i = starting_subarray; i <= ending_subarray; i++) cout << A[i] << " ";
-        cout << endl;
+        for (int j = 0; j < cnt; j++)
+        {
+            for (int i = ending_subarray[j] - largest_subarray + 1; i <= ending_subarray[j]; i++) cout << A[i] << " ";
+            cout << endl;
+        }
     }
 }
 
