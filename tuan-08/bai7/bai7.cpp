@@ -8,10 +8,10 @@ void find_equilibrium()
 {
     int* sum_left = new int[n + 1](), sum_right = 0;
     int* equilibrium_index = new int[n], cnt = 0;
-    for (int i = 0; i < n; i++) sum_left[i + 1] += A[i]; 
+    for (int i = 0; i < n; i++) sum_left[i + 1] = sum_left[i] + A[i]; 
     for (int i = n - 1; i >= 0; i--)
     {
-        if (sum_left[i - 1] == sum_right)
+        if (sum_left[i] == sum_right)
         {
             equilibrium_index[cnt++] = i;
         } 
