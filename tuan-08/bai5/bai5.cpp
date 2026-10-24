@@ -1,8 +1,15 @@
 #include <iostream>
-#include <algorithm>
+
 using namespace std;
 
 int m, n, *X, *Y;
+
+void swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
 
 void merge()
 {
